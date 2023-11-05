@@ -6,7 +6,7 @@ export default function App() {
 
   return (
     <AuthProvider>
-      <StatusBar style="auto" translucent />
+      <StatusBar style="dark" backgroundColor='white' translucent />
       <Routes />
     </AuthProvider>
   );

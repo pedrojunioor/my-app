@@ -49,6 +49,7 @@ const AuthProvider = ({ children }: ContextProps) => {
     await auth().signInWithEmailAndPassword(email, password)
       .then(() => console.log('User signed!'))
       .catch((error) => {
+        console.log(error)
         Alert.alert(error.message)
       })
   }
@@ -73,10 +74,11 @@ const AuthProvider = ({ children }: ContextProps) => {
         await res.user.updateProfile({
           displayName: name
         })
-        await refUser.add({
+        await refUser.doc(res.user.uid).set({
           name,
           email,
-        });
+        }
+        )
         console.log('User account created & signed in!');
       })
       .catch(error => {

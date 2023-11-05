@@ -1,9 +1,7 @@
 
-import { StatusBar } from "expo-status-bar";
 import { useState } from "react";
 import { View, TextInput, TouchableOpacity, ActivityIndicator, Text } from "react-native";
 import { useAuth } from "../hooks/useAuth";
-
 
 export function LoginScreen({ navigation }) {
 
@@ -37,7 +35,9 @@ export function LoginScreen({ navigation }) {
                     secureTextEntry
                 />
                 <TouchableOpacity
+                    disabled={email.trim() === '' || password.trim() === ''}
                     onPress={handleSubmit}
+                    data-disabled={email.trim() === '' || password.trim() === ''}
                     className="bg-blue-900 bg-opacity-10 w-8/12 p-2 rounded-md flex justify-center items-center">
                     {!loading ?
                         <Text className="text-white font-bold">
@@ -48,7 +48,7 @@ export function LoginScreen({ navigation }) {
                     }
                 </TouchableOpacity>
                 <TouchableOpacity
-                    onPress={() => navigation.navigate('Register') }
+                    onPress={() => navigation.navigate('Register')}
                     className="bg-opacity-10 w-8/12 p-2 rounded-md flex justify-center items-center">
                     <Text className="text-white font-bold">
                         Cadastre-se

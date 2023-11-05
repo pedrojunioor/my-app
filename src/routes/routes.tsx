@@ -7,6 +7,7 @@ import { LoginScreen } from '../pages/Login';
 import { HomeScreen } from '../pages/Home';
 import { RegisterScreen } from "../pages/Register";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { TodoScreen } from "../pages/Todo";
 const Stack = createNativeStackNavigator();
 
 export default function Routes() {
@@ -23,7 +24,8 @@ export default function Routes() {
         <NavigationContainer>
             {(!user) ?
                 <Stack.Navigator screenOptions={{
-                    headerShown: false
+                    headerShown: false,
+                    animation:"simple_push"
                 }} >
                     <Stack.Screen name="Login" component={LoginScreen} />
                     <Stack.Screen name="Register" component={RegisterScreen} />
@@ -32,7 +34,12 @@ export default function Routes() {
                 <Stack.Navigator screenOptions={{
                     headerShown: false
                 }} >
-                    <Stack.Screen name="Home" component={HomeScreen} />
+                    <Stack.Screen
+                        options={{
+                            presentation: 'containedTransparentModal'
+                        }}
+                        name="Home" component={HomeScreen} />
+                    <Stack.Screen name="Todo" component={TodoScreen} />
                 </Stack.Navigator>
             }
         </NavigationContainer>
